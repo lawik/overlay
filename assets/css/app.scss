@@ -1,6 +1,4 @@
 /* This file is for your main application css. */
-@import "./phoenix.css";
-@import "../node_modules/nprogress/nprogress.css";
 
 /* LiveView specific classes for your customizations */
 .phx-no-feedback.invalid-feedback,
@@ -88,4 +86,71 @@
   color: #a94442;
   display: block;
   margin: -1rem 0 2rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  color: white;
+  
+  font-size: 1.2em;
+  font-family: 'Fira Code', monospace;
+  font-weight: 800;
+  font-variant-ligatures: none;
+}
+
+.stats {
+  position: absolute;
+  top: 128px;
+  right: 16px;
+}
+
+.stats .line {
+  display: flex;
+  justify-content: flex-end;
+  animation: lineblip 1s;
+  animation-fill-mode: forwards;
+}
+
+.stats .plus, .stats .minus {
+  width: 32px;
+  margin-left: 16px;
+}
+
+.stats .minus {
+  color: #d139c8;
+}
+
+.stats .plus {
+  color: #1dceaf;
+}
+
+.stats .cursor {
+  margin-top: 4px;
+  float: right;
+  width: 16px;
+  height: 30px;
+  animation: cursor 1s infinite;
+}
+
+@keyframes cursor {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes lineblip {
+  0% {
+    background-color: rgba(209,57,200,1);
+  }
+  
+  100% {
+    background-color: rgba(209,57,200,0);
+  }
 }
