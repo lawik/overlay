@@ -15,12 +15,7 @@ defmodule Overlay.Application do
       {Phoenix.PubSub, name: Overlay.PubSub},
       # Start the Endpoint (http/https)
       OverlayWeb.Endpoint,
-      # Start a worker by calling: Overlay.Worker.start_link(arg)
-      # {Overlay.Worker, arg}
-      %{
-        id: :filesystem_watcher,
-        start: {FileSystem, :start_link, [[dirs: [File.cwd!()], name: :filesystem_watcher]]}
-      }
+      {Overlay.Filewatch, dir: File.cwd!()}
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
