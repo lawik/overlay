@@ -101,13 +101,17 @@ body {
 
 .stats {
   position: absolute;
-  top: 128px;
+  top: 32px;
   right: 16px;
+  opacity: 0.5;
 }
 
 .stats .line {
   display: flex;
   justify-content: flex-end;
+}
+
+.stats .line.enter {
   animation: lineblip 1s;
   animation-fill-mode: forwards;
 }
@@ -131,6 +135,10 @@ body {
   width: 16px;
   height: 30px;
   animation: cursor 1s infinite;
+}
+
+.stats {
+  background: radial-gradient(closest-side, rgba(0,0,0,0.5), rgba(0,0,0,0));
 }
 
 @keyframes cursor {

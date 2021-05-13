@@ -3,9 +3,9 @@ defmodule OverlayWeb.PageLive do
 
   @impl true
   def mount(_params, _session, socket) do
-    stats = Overlay.get_file_stats(File.cwd!())
     Phoenix.PubSub.subscribe(Overlay.PubSub, "stats")
-    {:ok, assign(socket, stats: stats)}
+    Overlay.Filewatch.stat()
+    {:ok, assign(socket, stats: [])}
   end
 
   @impl true

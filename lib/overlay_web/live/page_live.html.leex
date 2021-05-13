@@ -1,11 +1,21 @@
 <div class="stats">
-  <%= for {filepath, %{added: a, removed: r}} <- @stats do %>
-    <div id="stat-filepath-#{filepath}" class="line">
+  <%= for {filepath, %{added: a, removed: r}} <- Enum.take(@stats, 12) do %>
+    <div x-data="{visible: false}" x-init="function () {this.visible = true;}" id="stat-filepath-<%= filepath %>" x-show="visible" class="line" x-transition:enter="enter" x-transition:enter-start="enter-start">
       <%= filepath %>
 
       <span class="plus"> +<%= a %></span>
       <span class="minus"> -<%= r %></span>
     </div>
   <% end %>
+  <%= if Enum.count(@stats) > 12 do %>
+  <div class="line" id="count">...
+    <span class="plus"></span>
+    <span class="minus"></span>
+  </div>
+  <% end %>
+  <div class="line" id="count">Files changed:
+    <span class="plus"><%= Enum.count(@stats) %></span>
+    <span class="minus"></span>
+  </div>
   <div class="cursor"></div>
 </div>

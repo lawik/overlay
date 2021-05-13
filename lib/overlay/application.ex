@@ -6,6 +6,8 @@ defmodule Overlay.Application do
   use Application
 
   def start(_type, _args) do
+    IO.inspect(System.get_env("FILEPATH"), label: "filepath")
+
     children = [
       # Start the Ecto repository
       # Overlay.Repo,
@@ -13,9 +15,9 @@ defmodule Overlay.Application do
       OverlayWeb.Telemetry,
       # Start the PubSub system
       {Phoenix.PubSub, name: Overlay.PubSub},
+      {Overlay.Filewatch, dir: System.get_env("FILEPATH")},
       # Start the Endpoint (http/https)
-      OverlayWeb.Endpoint,
-      {Overlay.Filewatch, dir: File.cwd!()}
+      OverlayWeb.Endpoint
     ]
 
     # See https://hexdocs.pm/elixir/Supervisor.html
